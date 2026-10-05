@@ -17,6 +17,7 @@ import { SeniorDashboard } from './components/SeniorDashboard';
 import { SpecialistDashboard } from './components/SpecialistDashboard';
 import { SharedPatientPage } from './components/SharedPatientPage';
 import { SeniorApproachSection } from './components/SeniorApproachSection';
+import { LandingPage } from './components/LandingPage';
 import {
   AddEventModal,
   NewPrescriptionModal,
@@ -55,6 +56,36 @@ export const App: React.FC = () => {
   const [respondReferralTarget, setRespondReferralTarget] = useState<SpecialistReferral | null>(null);
   const [isCreateCommOpen, setIsCreateCommOpen] = useState(false);
   const [isShareApproachOpen, setIsShareApproachOpen] = useState(false);
+
+  // 0. Landing Page / Demo Routing State
+  const [inDemo, setInDemo] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      const isDemoPath = window.location.pathname.startsWith('/demo') ||
+                         window.location.hash === '#demo' ||
+                         window.location.search.includes('demo=true');
+      const wasInDemo = sessionStorage.getItem('healthagram_in_demo') === 'true';
+      if (isDemoPath) return true;
+      if (wasInDemo && window.location.pathname === '/demo') return true;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const isDemo = window.location.pathname.startsWith('/demo') ||
+                     window.location.hash === '#demo' ||
+                     window.location.search.includes('demo=true');
+      setInDemo(isDemo);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleEnterDemo = () => {
+    sessionStorage.setItem('healthagram_in_demo', 'true');
+    window.history.pushState(null, '', '/demo');
+    setInDemo(true);
+  };
 
   // 1. Initial Authentication Boot (Default: Dr. Suresh - Senior Doctor)
   useEffect(() => {
@@ -270,6 +301,10 @@ export const App: React.FC = () => {
       setErrorMessage(err.message);
     }
   };
+
+  if (!inDemo) {
+    return <LandingPage onEnterDemo={handleEnterDemo} />;
+  }
 
   return (
     <div className="app-container">

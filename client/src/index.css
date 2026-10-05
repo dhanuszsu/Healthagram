@@ -804,3 +804,191 @@ body {
 .notif-item:last-child {
   border-bottom: none;
 }
+
+/* ==================================================
+   ISOLATED LANDING PAGE STYLES (FROZEN DEMO PRESERVED)
+   ================================================== */
+.landing-root {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  user-select: none;
+  animation: landingFadeIn 0.3s ease-out;
+}
+
+@keyframes landingFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Background image layer (Part 11) */
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: none;
+  transform: none;
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+}
+
+/* Layout container */
+.landing-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.landing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 20;
+  padding: 1.5rem 2rem;
+}
+
+.landing-brand-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-shadow: none;
+  filter: none;
+  -webkit-text-stroke: 0;
+  text-stroke: 0;
+  mix-blend-mode: normal;
+  transform: none;
+}
+
+/* Hero Section */
+.landing-hero-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 4rem 4rem 4rem;
+  max-width: 1440px;
+  width: 100%;
+}
+
+/* Part 9 - Clean Flexbox: ONE single content wrapper */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: 600px;
+}
+
+/* Part 10 - Clean text CSS: explicitly no text-shadow, no filter, no stroke */
+.landing-hero-h1 {
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-shadow: none;
+  filter: none;
+  -webkit-text-stroke: 0;
+  text-stroke: 0;
+  mix-blend-mode: normal;
+  transform: none;
+}
+
+.landing-hero-p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+  font-weight: 400;
+  margin: 0;
+  max-width: 520px;
+  text-shadow: none;
+  filter: none;
+  -webkit-text-stroke: 0;
+  text-stroke: 0;
+  mix-blend-mode: normal;
+  transform: none;
+}
+
+/* Buttons */
+.landing-btn-glass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-shadow: none;
+  filter: none;
+  text-decoration: none;
+}
+
+.landing-btn-glass:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+.landing-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.85rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #2563eb;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  transition: all 0.2s ease;
+  text-shadow: none;
+  filter: none;
+  text-decoration: none;
+}
+
+.landing-btn-primary:hover {
+  background: #1d4ed8;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+
+
