@@ -328,7 +328,7 @@ export const JuniorDashboard: React.FC<JuniorDashboardProps> = ({
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '0.75rem', padding: '0.75rem' }}>
-            {approaches.slice(0, 3).map((app) => (
+            {approaches.map((app) => (
               <div
                 key={app.id}
                 style={{

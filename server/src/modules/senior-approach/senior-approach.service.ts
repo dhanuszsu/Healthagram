@@ -95,6 +95,29 @@ export async function createSeniorApproach(data: {
     throw new AppError('Patient not found', 404);
   }
 
+  // Idempotency: Check if an approach with the same title already exists for this patient
+  const existingApproach = await prisma.seniorApproach.findFirst({
+    where: {
+      patientId: data.patientId,
+      title: data.title
+    },
+    include: {
+      seniorDoctor: {
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          role: true,
+          doctorProfile: { select: { specialization: true, rank: true } }
+        }
+      }
+    }
+  });
+
+  if (existingApproach) {
+    return existingApproach;
+  }
+
   const approach = await prisma.seniorApproach.create({
     data: {
       patientId: data.patientId,

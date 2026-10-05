@@ -126,7 +126,10 @@ export const App: React.FC = () => {
       ]);
       setDoctors(allDocs);
       setPatients(allPatients);
-      setApproaches(allApproaches);
+      const uniqueApproaches = Array.from(
+        new Map(allApproaches.map((a) => [`${a.patientId}-${a.title}`, a])).values()
+      );
+      setApproaches(uniqueApproaches);
 
       // Select first patient by default if none selected or if previous selected is not in accessible list
       if (allPatients.length > 0) {
@@ -178,7 +181,10 @@ export const App: React.FC = () => {
         api.listSeniorApproaches()
       ]);
       setPatients(allPatients);
-      setApproaches(allApproaches);
+      const uniqueApproaches = Array.from(
+        new Map(allApproaches.map((a) => [`${a.patientId}-${a.title}`, a])).values()
+      );
+      setApproaches(uniqueApproaches);
     } catch (err: any) {
       setErrorMessage(err.message);
     }
